@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <script src="js/jquery.min.js"></script>
+    <script>
+        (function (d, w){
+            var s = d.createElement("script")
+            s.type = "text/javascript"
+            s.src = "https://www.lumamax.com.br/api/sdkAds/adsmax.js"
+            d.getElementsByTagName('head')[0].appendChild(s)
+        })(document, window)
+    </script>
 </head>
 <body class="w3-light-grey">
 
@@ -17,6 +25,7 @@
             <p>Calculadora de taxa do Mercado Pago</p>
         </header>
         <hr>
+        <div class="adMax1 w3-margin-top w3-margin-buttom" id="adMax1"></div>
         <section class="w3-container">
             <div class="w3-white w3-round w3-border w3-card-4 w3-padding">
                 <div class="w3-row">
@@ -36,6 +45,7 @@
             </div>
         </section>
         <hr>
+        <div class="adMax2 w3-margin-top w3-margin-buttom" id="adMax2"></div>
         <section class="w3-container">
             <div class="w3-white w3-round w3-border w3-padding">
                 <h5>Mercado Crédito</h5>
@@ -57,6 +67,7 @@
             </div> 
         </section>
         <hr>
+        <div class="adMax3 w3-margin-top w3-margin-buttom" id="adMax3"></div>
         <section class="w3-container">
             <div class="w3-white w3-round w3-border w3-padding">
                 <h5>Cartão de Crédito</h5>
@@ -78,6 +89,7 @@
             </div> 
         </section>
         <hr>
+        <div class="adMax4 w3-margin-top w3-margin-buttom" id="adMax4"></div>
         <section class="w3-container">
             <div class="w3-white w3-round w3-border w3-padding">
                 <h5>Saldo no Mercado Pago</h5>
@@ -158,6 +170,7 @@
                 </div>
             </div> 
         </section>
+        <div class="adMax5 w3-margin-top w3-margin-buttom" id="adMax5"></div>
     </main>
 
     <footer class="">
@@ -214,6 +227,65 @@
             }
             
         }
+
+        // adsmax lumamax.com.br
+
+        $(document).ready(function() {
+            // Função para realizar a requisição AJAX e atualizar a div com o conteúdo da resposta
+            function ajax(url, divClass) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response) {
+                    // Atualiza a div com o conteúdo da resposta
+                    $(divClass).html(response);
+                    }
+                });
+            }
+
+        // Função para carregar os anúncios
+        function loadAds() {
+            // Array de URLs e classes de div correspondentes
+            var urls = [
+                {
+                    url: 'https://www.lumamax.com.br/api/sdkAds/ads?id_usuario=1&site=8&id_bloco=16',
+                    divClass: '.adMax1'
+                },
+                {
+                    url: 'https://www.lumamax.com.br/api/sdkAds/ads?id_usuario=1&site=8&id_bloco=16',
+                    divClass: '.adMax2'
+                },
+                {
+                    url: 'https://www.lumamax.com.br/api/sdkAds/ads?id_usuario=1&site=8&id_bloco=16',
+                    divClass: '.adMax3'
+                },
+                {
+                    url: 'https://www.lumamax.com.br/api/sdkAds/ads?id_usuario=1&site=8&id_bloco=16',
+                    divClass: '.adMax4'
+                },
+                {
+                    url: 'https://www.lumamax.com.br/api/sdkAds/ads?id_usuario=1&site=8&id_bloco=16',
+                    divClass: '.adMax5'
+                }
+                // Adicione mais objetos URL/divClass conforme necessário
+            ];
+
+            // Percorre o array de URLs e classes de div
+            for (var i = 0; i < urls.length; i++) {
+                    var url = urls[i].url;
+                    var divClass = urls[i].divClass;
+
+                    // Chama a função ajax() para cada URL e classe de div correspondente
+                    ajax(url, divClass);
+                }
+            }
+
+            // Função principal que é executada quando o documento estiver pronto
+            $(document).ready(function() {
+                // Chama a função loadAds() para carregar os anúncios
+                loadAds();
+            });
+        });
     </script>
 </body>
 </html>
