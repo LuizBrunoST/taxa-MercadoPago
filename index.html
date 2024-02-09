@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxa do Mercado Pago</title>
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body class="w3-light-grey">
+
+    <main class="w3-content">
+        <header class="w3-center cabecalho">
+            <h1 style="text-shadow: 0px 0px 2px #000;">Taxa Mercado Pago</h1>   
+            <p>Calculadora de taxa do Mercado Pago</p>
+        </header>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-card-4 w3-padding">
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        <label for="valor">Valor:</label>
+                        <input class="w3-input" type="text" id="valor" placeholder="ex. 150.00">
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        <label for="taxa">Taxa: %</label>
+                        <input class="w3-input" type="text" id="taxa" placeholder="ex. 4.99">
+                    </div>
+                    <div class="w3-third">
+                        <div id="resultado"></div>
+                        <button class="w3-button w3-blue w3-block" onclick="calcular()" id="btn-calcular"><i class="fa-solid fa-percent"></i> Ver taxa</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Mercado Crédito</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        na hora <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.99);calcular()">4.99%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        14 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        30 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.99);calcular()">3.99%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Cartão de Crédito</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        Na hora <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.98);calcular()">4.98%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        14 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        30 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.98);calcular()">3.98%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Saldo no Mercado Pago</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        Na hora <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.99);calcular()">4.99%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        14 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        30 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.99);calcular()">3.99%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Boleto</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        Até 3 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.49);calcular()">3.49%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Cartão pré-pago</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        na hora <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.99);calcular()">4.99%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        14 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
+                    </div>
+                    <div class="w3-third w3-center w3-container">
+                        30 dias <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.99);calcular()">3.99%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Pix</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        Na hora <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(0.99);calcular()">0.99%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <hr>
+        <section class="w3-container">
+            <div class="w3-white w3-round w3-border w3-padding">
+                <h5>Open Finance</h5>
+                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
+                <div class="w3-row">
+                    <div class="w3-third w3-center w3-container">
+                        Na hora <br>
+                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(0.00);calcular()">0%</span>
+                    </div>
+                </div>
+            </div> 
+        </section>
+    </main>
+
+    <footer class="">
+        <p class="w3-small w3-opacity">Powred by <i><a href="https://www.lumamax.com.br/">WWW.LUMAMAX.COM.BR</a></i></p>
+    </footer>
+
+    <script>
+        const pegaValor = $('#valor');
+
+        const pegaTaxa = $('#taxa');
+
+        const pegaResultado = $('#resultado');
+
+        const btnCalcular = $('#btn-calcular');
+
+        // Função para calcular a taxa com base no valor da transação e na taxa percentual
+        function calcularTaxa(valorTransacao, taxaPercentual) {
+
+            return (valorTransacao * taxaPercentual) / 100;
+
+        }
+
+        var calcular = () => {
+
+            if (pegaValor.val() === '' || pegaTaxa.val() === '') {
+
+                window.alert("Os input's estão vazios, por favor insira os valores.");
+
+            } else {
+
+                // Exemplo de uso da função
+                var valorTransacao = pegaValor.val(); // Valor da transação em reais
+
+                var taxaPercentual = pegaTaxa.val(); // Taxa percentual do Mercado Pago
+
+                var taxaAPagar = calcularTaxa(valorTransacao, taxaPercentual);
+
+                var totalApagarCompleto = parseFloat(valorTransacao) - parseFloat(taxaAPagar);
+
+                var totalAPagarCliente = parseFloat(valorTransacao) + parseFloat(taxaAPagar);
+
+                pegaResultado.html(`
+
+                    <p>Valor: R$${parseFloat(valorTransacao).toFixed(2)}</p>
+
+                    <p>Taxa a ser paga: R$${taxaAPagar.toFixed(2)}</p>
+
+                    <p>Saldo final: R$${totalApagarCompleto.toFixed(2)}</p>
+
+                    <p>Quanto pode cobrar: R$${totalAPagarCliente.toFixed(2)}</p>
+
+                `);
+
+            }
+            
+        }
+    </script>
+</body>
+</html>

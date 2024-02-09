@@ -1,0 +1,8 @@
+html,body,h1,h2,h3,h4,h5 {
+    font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+}
+.cabecalho{
+    background-image: url('../img/mercadopago-banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
