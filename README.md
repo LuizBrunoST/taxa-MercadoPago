@@ -6,7 +6,8 @@ Este é um simples aplicativo web para calcular a taxa que o Mercado Pago cobra 
 
 Veja a aplicação em ação [DEMO](link-para-a-demo).
 
-![Screenshot da Aplicação](screenshot.png)
+![screencapture-localhost-taxa-MercadoPago-2024-02-08-23_40_31](https://github.com/LuizBrunoST/taxa-MercadoPago/assets/64446877/c9359077-f1cf-4306-931a-093d7f701ee7)
+
 
 ## Como Usar
 
@@ -28,6 +29,7 @@ var totalAPagarCliente = valorTransacao + taxaAPagar;
 console.log("Taxa a ser paga: R$ " + taxaAPagar.toFixed(2));
 console.log("Saldo final: R$ " + totalApagarCompleto.toFixed(2));
 console.log("Quanto pode cobrar: R$ " + totalAPagarCliente.toFixed(2));
+```
 
 ## Contribuição
 
