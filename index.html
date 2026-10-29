@@ -1,295 +1,75 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxa do Mercado Pago</title>
-    <link rel="stylesheet" href="css/w3.css">
-    <link rel="stylesheet" href="css/estilo.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script>
-        (function (d, w){
-            var s = d.createElement("script")
-            s.type = "text/javascript"
-            s.src = "https://lumamax.com.br/api/sdkAds/adsmax.js"
-            d.getElementsByTagName('head')[0].appendChild(s)
-        })(document, window)
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simule taxas, descubra quanto cobrar e compare o valor líquido de suas vendas.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <title>Taxa Clara · Simulador Mercado Pago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css?v=3fb5267eb0">
+  <script src="js/app.js?v=e789703627" defer></script>
 </head>
-<body class="w3-light-grey">
-    <div class="adMax6 w3-margin-top w3-margin-buttom" id="adMax6"></div>
-    <main class="w3-content">
-        <header class="w3-center cabecalho">
-            <h1 style="text-shadow: 0px 0px 2px #000;">Taxa Mercado Pago</h1>   
-            <p>Calculadora de taxa do Mercado Pago</p>
-        </header>
-        <hr>
-        <div class="adMax1 w3-margin-top w3-margin-buttom" id="adMax1"></div>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-card-4 w3-padding">
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        <label for="valor">Valor:</label>
-                        <input class="w3-input" type="text" id="valor" placeholder="ex. 150.00">
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        <label for="taxa">Taxa: %</label>
-                        <input class="w3-input" type="text" id="taxa" placeholder="ex. 4.99">
-                    </div>
-                    <div class="w3-third">
-                        <div id="resultado"></div>
-                        <button class="w3-button w3-blue w3-block" onclick="calcular()" id="btn-calcular"><i class="fa-solid fa-percent"></i> Ver taxa</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <hr>
-        <div class="adMax2 w3-margin-top w3-margin-buttom" id="adMax2"></div>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Mercado Crédito</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        na hora <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.99);calcular()">4.99%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        14 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        30 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.99);calcular()">3.99%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <hr>
-        <div class="adMax3 w3-margin-top w3-margin-buttom" id="adMax3"></div>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Cartão de Crédito</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        Na hora <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.98);calcular()">4.98%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        14 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        30 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.98);calcular()">3.98%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <hr>
-        <div class="adMax4 w3-margin-top w3-margin-buttom" id="adMax4"></div>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Saldo no Mercado Pago</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        Na hora <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.99);calcular()">4.99%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        14 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        30 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.99);calcular()">3.99%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <hr>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Boleto</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        Até 3 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.49);calcular()">3.49%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <hr>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Cartão pré-pago</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        na hora <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.99);calcular()">4.99%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        14 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(4.49);calcular()">4.49%</span>
-                    </div>
-                    <div class="w3-third w3-center w3-container">
-                        30 dias <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(3.99);calcular()">3.99%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <hr>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Pix</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        Na hora <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(0.99);calcular()">0.99%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <hr>
-        <section class="w3-container">
-            <div class="w3-white w3-round w3-border w3-padding">
-                <h5>Open Finance</h5>
-                <span class="w3-small w3-opacity">Dinheiro disponível em</span>
-                <div class="w3-row">
-                    <div class="w3-third w3-center w3-container">
-                        Na hora <br>
-                        <span class="w3-button w3-round w3-border w3-block" onclick="$('#taxa').val(0.00);calcular()">0%</span>
-                    </div>
-                </div>
-            </div> 
-        </section>
-        <div class="adMax5 w3-margin-top w3-margin-buttom" id="adMax5"></div>
-    </main>
-
-    <footer class="">
-        <p class="w3-small w3-opacity">Powred by <i><a href="https://www.lumamax.com.br/">WWW.LUMAMAX.COM.BR</a></i></p>
-    </footer>
-
-    <script>
-        const pegaValor = $('#valor');
-
-        const pegaTaxa = $('#taxa');
-
-        const pegaResultado = $('#resultado');
-
-        const btnCalcular = $('#btn-calcular');
-
-        // Função para calcular a taxa com base no valor da transação e na taxa percentual
-        function calcularTaxa(valorTransacao, taxaPercentual) {
-
-            return (valorTransacao * taxaPercentual) / 100;
-
-        }
-
-        var calcular = () => {
-
-            if (pegaValor.val() === '' || pegaTaxa.val() === '') {
-
-                window.alert("Os input's estão vazios, por favor insira os valores.");
-
-            } else {
-
-                // Exemplo de uso da função
-                var valorTransacao = pegaValor.val(); // Valor da transação em reais
-
-                var taxaPercentual = pegaTaxa.val(); // Taxa percentual do Mercado Pago
-
-                var taxaAPagar = calcularTaxa(valorTransacao, taxaPercentual);
-
-                var totalApagarCompleto = parseFloat(valorTransacao) - parseFloat(taxaAPagar);
-
-                var totalAPagarCliente = parseFloat(valorTransacao) + parseFloat(taxaAPagar);
-
-                pegaResultado.html(`
-
-                    <p>Valor: R$${parseFloat(valorTransacao).toFixed(2)}</p>
-
-                    <p>Taxa a ser paga: R$${taxaAPagar.toFixed(2)}</p>
-
-                    <p>Saldo final: R$${totalApagarCompleto.toFixed(2)}</p>
-
-                    <p>Quanto pode cobrar: R$${totalAPagarCliente.toFixed(2)}</p>
-
-                `);
-
-            }
-            
-        }
-
-        // adsmax lumamax.com.br
-
-        $(document).ready(function() {
-            // Função para realizar a requisição AJAX e atualizar a div com o conteúdo da resposta
-            function ajax(url, divClass) {
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(response) {
-                    // Atualiza a div com o conteúdo da resposta
-                    $(divClass).html(response);
-                    }
-                });
-            }
-
-        // Função para carregar os anúncios
-        function loadAds() {
-            // Array de URLs e classes de div correspondentes
-            var urls = [
-                {
-                    url: 'https://api.thetapejara.com.br/api/adssites/usuario/24/site/2/bloco/4',
-                    divClass: '.adMax1'
-                },
-                {
-                    url: 'https://api.thetapejara.com.br/api/adssites/usuario/24/site/2/bloco/6',
-                    divClass: '.adMax2'
-                },
-                {
-                    url: 'https://api.thetapejara.com.br/api/adssites/usuario/24/site/2/bloco/6',
-                    divClass: '.adMax3'
-                },
-                {
-                    url: 'https://api.thetapejara.com.br/api/adssites/usuario/24/site/2/bloco/6',
-                    divClass: '.adMax4'
-                },
-                {
-                    url: 'https://api.thetapejara.com.br/api/adssites/usuario/24/site/2/bloco/4',
-                    divClass: '.adMax5'
-                },
-                {
-                    url: 'https://api.thetapejara.com.br/api/adssites/usuario/24/site/2/bloco/7',
-                    divClass: '.adMax6'
-                }
-                // Adicione mais objetos URL/divClass conforme necessário
-            ];
-
-            // Percorre o array de URLs e classes de div
-            for (var i = 0; i < urls.length; i++) {
-                    var url = urls[i].url;
-                    var divClass = urls[i].divClass;
-
-                    // Chama a função ajax() para cada URL e classe de div correspondente
-                    ajax(url, divClass);
-                }
-            }
-
-            // Função principal que é executada quando o documento estiver pronto
-            $(document).ready(function() {
-                // Chama a função loadAds() para carregar os anúncios
-                loadAds();
-            });
-        });
-    </script>
+<body>
+  <header class="topbar wrap">
+    <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">↗</span> taxa<span>clara</span><small>PARA MERCADO PAGO</small></a>
+    <button class="theme-button" id="theme-toggle" type="button" aria-label="Alternar tema">◐ <span>Tema</span></button>
+  </header>
+  <main class="wrap">
+    <section class="intro">
+      <p class="eyebrow"><span></span> MAIS CLAREZA EM CADA VENDA</p>
+      <h1>Sua venda, sem<br><em>surpresas na conta.</em></h1>
+      <p>Entenda as taxas e descubra quanto realmente fica com você.<br class="desktop"> Uma simulação simples para decidir melhor.</p>
+    </section>
+    <div class="workspace">
+      <section class="card calculator" aria-labelledby="calc-title">
+        <div class="section-heading"><span class="step">01</span><h2 id="calc-title">Simule sua venda</h2><span class="small-badge">EM REAIS</span></div>
+        <div class="tabs" role="group" aria-label="Objetivo da simulação">
+          <button type="button" class="active" data-mode="sale" aria-pressed="true">Vou cobrar um valor</button>
+          <button type="button" data-mode="net" aria-pressed="false">Quero receber líquido</button>
+        </div>
+        <form id="calculator" novalidate>
+          <label for="amount" id="amount-label">Quanto você vai cobrar?</label>
+          <div class="money-input"><span>R$</span><input id="amount" name="amount" inputmode="decimal" type="text" value="100,00" autocomplete="off" aria-describedby="error" required></div>
+          <div class="field-grid">
+            <div><label for="rate">Taxa percentual</label><div class="unit-input"><input id="rate" name="rate" inputmode="decimal" value="4,99" required><span>%</span></div></div>
+            <div><label for="fixed">Tarifa fixa <small>opcional</small></label><div class="unit-input"><span>R$</span><input id="fixed" name="fixed" inputmode="decimal" value="0,00"></div></div>
+          </div>
+          <p class="field-help">Use a taxa informada na sua conta do Mercado Pago.</p>
+          <div class="presets" aria-label="Taxas de exemplo"><span>Experimentar:</span><button type="button" data-rate="0">0%</button><button type="button" data-rate="0.99">0,99%</button><button type="button" data-rate="3.99">3,99%</button><button type="button" data-rate="4.99">4,99%</button></div>
+          <p id="error" class="error" role="alert"></p>
+          <button type="submit" class="primary">Calcular minha venda <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="local-note"><span aria-hidden="true">◇</span> Seus cálculos ficam somente neste navegador.</p>
+      </section>
+      <section class="result-card" aria-labelledby="result-title">
+        <div class="result-top"><span class="eyebrow">O QUE FICA COM VOCÊ</span><span class="live-dot">SIMULAÇÃO</span></div>
+        <div id="result" aria-live="polite" aria-atomic="true">
+          <h2 id="result-title">Valor líquido</h2><p class="result-value" id="net-result">R$ 95,01</p>
+          <p class="result-caption" id="result-caption">depois de descontar as taxas</p>
+          <div class="distribution" aria-hidden="true"><span id="net-bar"></span></div>
+          <div class="legend"><span><i></i> Você recebe</span><span><i></i> Taxas</span></div>
+          <dl class="breakdown"><div><dt>Valor cobrado</dt><dd id="gross-result"></dd></div><div><dt>Taxa percentual <span id="rate-label"></span></dt><dd id="percent-result"></dd></div><div><dt>Tarifa fixa</dt><dd id="fixed-result"></dd></div><div class="total"><dt>Total em taxas</dt><dd id="fees-result"></dd></div></dl>
+          <div class="insight"><span aria-hidden="true">↗</span><p id="insight"></p></div>
+        </div>
+        <button class="copy-button" id="copy-result" type="button">Copiar resumo <span aria-hidden="true">⧉</span></button>
+        <p id="copy-status" role="status" class="copy-status"></p>
+      </section>
+    </div>
+    <section class="card comparison" aria-labelledby="comparison-title">
+      <div class="section-heading"><span class="step">02</span><h2 id="comparison-title">Uma taxa muda o resultado.</h2><span class="muted">Compare antes de vender</span></div>
+      <p class="section-description">Cenários ilustrativos para o mesmo valor e tarifa fixa. Clique para usar uma taxa.</p>
+      <div class="comparison-grid" id="comparison"></div>
+    </section>
+    <section class="card history" aria-labelledby="history-title">
+      <div class="section-heading"><span class="step">03</span><h2 id="history-title">Suas últimas simulações</h2><button type="button" class="text-button" id="clear-history">Limpar histórico</button></div>
+      <div id="history-list"></div>
+    </section>
+    <aside class="disclaimer"><span aria-hidden="true">ⓘ</span><p><strong>Uma estimativa, para ajudar você.</strong> Este é um simulador independente, sem vínculo com o Mercado Pago. As taxas de exemplo não representam tarifas oficiais. Consulte sua conta para conferir custos, condições e arredondamentos aplicáveis. O valor sugerido considera apenas as taxas preenchidas.</p></aside>
+  </main>
+  <footer class="wrap"><a class="brand" href="./">taxa<span>clara</span></a><p>Mais informação. Melhores decisões.</p><span>Feito para simplificar.</span></footer>
 </body>
 </html>

@@ -1,41 +1,34 @@
-# Calculadora de Taxa do Mercado Pago
+# Taxa Clara · Simulador Mercado Pago
 
-Este é um simples aplicativo web para calcular a taxa que o Mercado Pago cobra em transações e o saldo final após a dedução da taxa. Além disso, o aplicativo também calcula quanto você pode cobrar do cliente para compensar a taxa.
+Calculadora independente de taxas, feita com HTML, CSS e JavaScript nativo, sem dependências de execução ou etapa de build.
 
-## Demonstração
+## Executar
 
-Veja a aplicação em ação [DEMO](https://luizbrunost.github.io/taxa-MercadoPago/).
+Abra `index.html` no navegador ou sirva a pasta com um servidor HTTP estático. Para copiar o resumo pela Clipboard API, use HTTPS ou localhost e permita acesso à área de transferência.
 
-![screencapture-localhost-taxa-MercadoPago-2024-02-08-23_40_31](https://github.com/LuizBrunoST/taxa-MercadoPago/assets/64446877/c9359077-f1cf-4306-931a-093d7f701ee7)
+## Funcionalidades
 
+- Temas claro e escuro: segue inicialmente o sistema e salva a escolha localmente.
+- Simulação do valor líquido de uma venda ou do valor necessário para receber um líquido desejado.
+- Taxa percentual e tarifa fixa editáveis; suporte a `150,00`, `1.234,56` e `150.00`.
+- Comparação de quatro taxas ilustrativas, seleção rápida e atualização dos resultados ao digitar.
+- Histórico das cinco últimas simulações confirmadas, com reutilização e limpeza.
+- Cópia do resumo e controles acessíveis por teclado.
 
-## Como Usar
+## Cálculos
 
-1. Abra o arquivo `index.html` em um navegador da web.
-2. Insira o valor da transação e a taxa percentual do Mercado Pago.
-3. Clique no botão "Calcular".
-4. Os resultados serão exibidos abaixo do formulário, mostrando a taxa a ser paga, o saldo final após a dedução da taxa e o valor total que o cliente deve pagar.
+Valores são convertidos para centavos. A taxa percentual é arredondada para o centavo mais próximo sobre o valor cobrado, depois somada à tarifa fixa. O modo de valor líquido encontra a menor cobrança em centavos que cobre o líquido desejado sob essa regra.
 
-## Exemplo de Uso
+Exemplo: venda de R$ 100,00 com taxa de 4,99% e sem tarifa fixa rende R$ 95,01. Para receber R$ 100,00, o simulador sugere R$ 105,25, considerando o arredondamento da taxa para R$ 5,25.
 
-```javascript
-var valorTransacao = 100; // Valor da transação em reais
-var taxaPercentual = 4.99; // Taxa percentual do Mercado Pago
+São aceitos valores positivos de até R$ 1 bilhão, tarifa fixa de zero a R$ 1 bilhão e taxa de 0% a menos de 100%, com até duas casas decimais. Um ponto isolado é interpretado como separador decimal; para milhares, use `1.234,00` ou `1234`.
 
-var taxaAPagar = calcularTaxa(valorTransacao, taxaPercentual);
-var totalApagarCompleto = valorTransacao - taxaAPagar;
-var totalAPagarCliente = valorTransacao + taxaAPagar;
+## Dados e limites
 
-console.log("Taxa a ser paga: R$ " + taxaAPagar.toFixed(2));
-console.log("Saldo final: R$ " + totalApagarCompleto.toFixed(2));
-console.log("Quanto pode cobrar: R$ " + totalAPagarCliente.toFixed(2));
-```
+As taxas são exemplos editáveis, não tarifas oficiais atuais. Confira os custos e arredondamentos aplicados à sua conta. Não há vínculo com o Mercado Pago. O cálculo não considera outros impostos, parcelamento ou custos não preenchidos.
 
-## Contribuição
+O histórico e a preferência de tema ficam no `localStorage` do navegador; a calculadora continua funcionando se o armazenamento estiver indisponível. Anúncios externos, jQuery e W3.css foram removidos. As fontes do Google Fonts são opcionais, com fontes locais de reserva.
 
+## Verificação
 
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver alguma sugestão de melhoria, por favor, abra uma issue ou envie um pull request.
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT.
+Execute `node tests/calculator.test.cjs` para verificar conversão de entradas, taxas e os cenários de cobrança mínima.
